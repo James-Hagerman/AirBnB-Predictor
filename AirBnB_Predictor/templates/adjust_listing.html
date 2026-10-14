@@ -73,13 +73,13 @@
             </select>
             </label>
           <label><span>Number of bathrooms</span>
-            <input type="text" name="bathrooms" value="{{ listing.bathrooms }}">
+            <input type="number" min="0" step="any" name="bathrooms" value="{{ listing.bathrooms }}" required>
           </label>
           <label><span>Number of bedrooms</span>
-            <input type="text" name="bedrooms" value="{{ listing.bedrooms }}">
+            <input type="number" min="0" step="any" name="bedrooms" value="{{ listing.bedrooms }}" required>
           </label>
           <label><span>Number of beds</span>
-            <input type="text" name="beds" value="{{ listing.beds }}">
+            <input type="number" min="0" step="any" name="beds" value="{{ listing.beds }}" required>
           </label>
           <label><span>What type of bed do you have?</span>
             <select name="bed_type">
@@ -93,7 +93,7 @@
             </select>
           </label>
           <label><span>How many people does your listing accommodate?</span>
-            <input type="text" name="accommodates" value="{{ listing.accommodates }}">
+            <input type="number" min="0" step="any" name="accommodates" value="{{ listing.accommodates }}" required>
           </label>
           <label><span>Do you charge a cleaning fee?</span>
             <select name="cleaning_fee">
@@ -140,7 +140,7 @@
             </select>
           </label>
           <label><span>How many reviews does this listing have?</span>
-            <input type="text" name="number_of_reviews" value="{{ listing.number_of_reviews }}">
+            <input type="number" min="0" step="any" name="number_of_reviews" value="{{ listing.number_of_reviews }}" required>
           </label>
           <label><span>How would you characterize your cancellation policy?</span>
             <select name="cancellation_policy">

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: airbnb-predictor
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn AirBnB_Predictor:APP -t 120

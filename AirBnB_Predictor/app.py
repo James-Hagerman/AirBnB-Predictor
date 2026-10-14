@@ -7,16 +7,17 @@ from os import getenv
 
 def create_app():
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
+    app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL", "sqlite:///listings.db")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
+
+    with app.app_context():
+        DB.create_all()
 
 
     #Home page
     @app.route('/', methods = ['POST', 'GET'])
     def root():
-        DB.drop_all()
-        DB.create_all()
         return render_template("test.html", title="Home", listings=Listing.query.all())
        
 
@@ -65,7 +66,7 @@ def create_app():
     def adjust_listing(listing_name=None):
         listing_name=listing_name or request.values['listing_name']
 
-        cities = ["New York City", "Los Angeles", "Washington DC", "Chicago"]
+        cities = ["Boston", "New York City", "Los Angeles", "Washington DC", "Chicago", "San Francisco"]
         properties = ["Apartment", "Bed & Breakfast", "Bungalow", "Condominium", "Guest House", 
                     "Hostel", "House", "Loft", "Townhouse", "Other"]
         rooms = ["Entire House/apt", "Private room", "Shared room"]
@@ -123,7 +124,7 @@ def create_app():
         prediction = predict_rate()
         predict_message = f"Your optimal nightly rate is ${prediction}."
 
-        cities = ["New York City", "Los Angeles", "Washington DC", "Chicago"]
+        cities = ["Boston", "New York City", "Los Angeles", "Washington DC", "Chicago", "San Francisco"]
         properties = ["Apartment", "Bed & Breakfast", "Bungalow", "Condominium", "Guest House", 
                     "Hostel", "House", "Loft", "Townhouse", "Other"]
         rooms = ["Entire House/apt", "Private room", "Shared room"]

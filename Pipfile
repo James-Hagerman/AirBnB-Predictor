@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = ">=3.1,<4"
+flask-sqlalchemy = ">=3.1,<4"
+sqlalchemy = ">=2.0,<3"
+gunicorn = ">=23,<24"
+pandas = ">=2.2,<3"
+tensorflow = "==2.21.0"
+tf-keras = "==2.21.0"
+
+[dev-packages]
+jupyterlab = "*"
+matplotlib = "*"
+seaborn = "*"
+scikit-learn = "*"
+
+[requires]
+python_version = "3.12"
