@@ -11,6 +11,8 @@ MODEL = keras.models.load_model('AirBnB_Predictor/Keras_model', compile=False)
 with open('AirBnB_Predictor/tokenizer.json') as f:
     TOKENIZER = keras.preprocessing.text.tokenizer_from_json(f.read())
 
+MODEL([np.zeros((1, 10000)), np.zeros((1, 10000)), np.zeros((1, 170)), np.zeros((1, 14))], training=False)
+
 
 def bow(text):
     """Function to convert description and amenities features into bow"""
