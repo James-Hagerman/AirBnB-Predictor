@@ -6,7 +6,7 @@ import pandas as pd
 pd.set_option('future.no_silent_downcasting', True)
 
 
-MODEL = keras.models.load_model('AirBnB_Predictor/Keras_model')
+MODEL = keras.models.load_model('AirBnB_Predictor/Keras_model', compile=False)
 
 with open('AirBnB_Predictor/tokenizer.json') as f:
     TOKENIZER = keras.preprocessing.text.tokenizer_from_json(f.read())
@@ -110,7 +110,7 @@ def predict_rate():
 
     
     #Predict
-    prediction = model.predict([desc_bow, amenities_bow, desc_embed, df.astype(float)])
+    prediction = model([desc_bow, amenities_bow, desc_embed, df.astype(float).to_numpy()], training=False).numpy()
 
     return int(np.exp(prediction[0][0]))
 
